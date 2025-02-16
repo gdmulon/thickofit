@@ -34,17 +34,22 @@
         Your browser does not support the video tag.
     </video>
 
+    <audio id="audio" loop>
+        <source src="thickofit.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+
     <button onclick="enableSound()">Enable Sound</button>
 
     <script>
         const video = document.getElementById("video");
+        const audio = document.getElementById("audio");
 
         function enableSound() {
-            video.muted = false;
-            video.play();
+            audio.play().catch(err => console.log("Audio play failed:", err));
         }
 
-        // Attempt to autoplay, fallback to muted if blocked
+        // Ensure video plays on all browsers
         video.play().catch(() => {
             video.muted = true;
             video.play();

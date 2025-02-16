@@ -13,10 +13,17 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            flex-direction: column;
         }
         video {
             width: 100%;
             height: auto;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -27,9 +34,17 @@
         Your browser does not support the video tag.
     </video>
 
+    <button onclick="enableSound()">Enable Sound</button>
+
     <script>
-        // Ensure autoplay works on all browsers
         const video = document.getElementById("video");
+
+        function enableSound() {
+            video.muted = false;
+            video.play();
+        }
+
+        // Attempt to autoplay, fallback to muted if blocked
         video.play().catch(() => {
             video.muted = true;
             video.play();
